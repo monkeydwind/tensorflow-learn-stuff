@@ -1,0 +1,15 @@
+FROM python:3.7
+MAINTAINER Wind Hanabishi <hanabishi.wind@gmail.com>
+
+WORKDIR /home/tensorflow
+COPY bazel-0.29.1-installer-linux-x86_64.sh /home/tensorflow
+RUN ./bazel-0.29.1-installer-linux-x86_64.sh
+
+WORKDIR /
+RUN git clone https://github.com/tensorflow/tensorflow.git
+RUN cd /tensorflow && \
+    git checkout r2.1
+
+RUN pip install six numpy wheel mock
+RUN pip install keras_applications==1.0.8 --no-deps
+RUN pip install keras_preprocessing==1.1.0 --no-deps
