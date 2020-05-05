@@ -1,0 +1,10 @@
+FROM base-opencv:latest
+MAINTAINER Wind Hanabishi <hanabishi.wind@gmail.com>
+
+WORKDIR /home/base-tensorflow
+
+COPY tensorflow-2.1.0-cp37-cp37m-linux_x86_64.whl /home/base-tensorflow
+
+RUN pip install tensorflow-2.1.0-cp37-cp37m-linux_x86_64.whl
+
+RUN rm tensorflow-2.1.0-cp37-cp37m-linux_x86_64.whl
